@@ -76,7 +76,7 @@ void loadMembersFromFile() {
                   &member.feesPaid, &member.attendance,
                   &member.paymentStatus, member.feedback) != EOF) {
         members[memberCount++] = member;
-    }
+    } //fscanf reads data from file in a loop until it reaches EOF
     fclose(file);
 }
 
@@ -92,4 +92,35 @@ void saveMembersToFile() {
         fprintf(file, "%d,%s,%s,%d,%d,%d,%s\n", members[i].id, members[i].name, members[i].membershipType, members[i].feesPaid, members[i].attendance, members[i].paymentStatus, members[i].feedback);
     }   //fprintf used to write formatted output to the file 
     fclose(file);
+}
+
+// Writing function to Add a new member
+void addMember() {
+    if (memberCount >= 100) {
+        printf("Member limit reached. Cannot add more members.\n");
+        return;
+    }
+
+    Member m; // I created m variable as temporary variable to store user input
+    printf("Enter Member ID: ");
+    scanf("%d", &m.id);
+    getchar(); // Consume the newline left by scanf so that fgets read the name string
+
+    printf("Enter Name: ");
+    fgets(m.name, sizeof(m.name), stdin);
+    m.name[strcspn(m.name, "\n")] = '\0'; // Remove newline
+
+    printf("Enter Membership Type (Monthly/Yearly): ");
+    fgets(m.membershipType, sizeof(m.membershipType), stdin);
+    m.membershipType[strcspn(m.membershipType, "\n")] = '\0';
+
+    m.feesPaid = 0;
+    m.attendance = 0;
+    m.paymentStatus = false;
+    strcpy(m.feedback, "");
+
+    members[memberCount++] = m;
+    saveMembersToFile();
+    printf("Member added successfully!\n");
+    pressAnyKey(); //This function waits for the user to press any key to continue.
 }
