@@ -55,3 +55,26 @@ int main() {
     mainMenu();
     return 0;
 }
+
+void loadMembersFromFile() {
+    FILE *file = fopen(FILE_NAME, "r");
+    if (file == NULL) {
+        file = fopen(FILE_NAME, "w");
+        if (file == NULL) {
+            printf("Error: Unable to create members file.\n");
+            exit(1);
+        }
+        fclose(file);
+        return;
+    }
+
+    memberCount = 0;
+    Member member;
+    while (fscanf(file, "%d,%49[^,],%19[^,],%d,%d,%d,%199[^\n]\n",
+                  &member.id, member.name, member.membershipType,
+                  &member.feesPaid, &member.attendance,
+                  &member.paymentStatus, member.feedback) != EOF) {
+        members[memberCount++] = member;
+    }
+    fclose(file);
+}
