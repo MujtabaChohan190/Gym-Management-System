@@ -132,3 +132,37 @@ void viewMembers() {
     }
     pressAnyKey(); //This function is added to pause the program execution and wait for the user to press any key.
 }
+//Writing function to update members detail
+void updateMember() {
+    int id, found = 0;
+    printf("Enter Member ID to update: ");
+    scanf("%d", &id);
+    getchar();  
+
+    for (int i = 0; i < memberCount; i++) {
+        if (members[i].id == id) {
+            found = 1;
+            printf("Enter new Name: ");
+            fgets(members[i].name, 50, stdin);
+            members[i].name[strcspn(members[i].name, "\n")] = 0;
+
+            printf("Enter new Membership Type: ");
+            fgets(members[i].membershipType, 20, stdin);
+            members[i].membershipType[strcspn(members[i].membershipType, "\n")] = 0;
+
+            printf("Enter new Fees Paid: ");
+            scanf("%d", &members[i].feesPaid);
+            members[i].paymentStatus = true;
+
+            printf("Member updated successfully!\n");
+            saveMembersToFile(); 
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("Member not found.\n");
+    }
+    pressAnyKey();
+}
+
