@@ -124,3 +124,11 @@ void addMember() {
     printf("Member added successfully!\n");
     pressAnyKey(); //This function waits for the user to press any key to continue.
 }
+//Writing function to view members
+void viewMembers() {
+    printf("\n========== MEMBERS LIST ==========\n");
+    for (int i = 0; i < memberCount; i++) {
+        printf("ID: %d, Name: %s, Membership Type: %s, Fees Paid: %d, Attendance: %d\n", members[i].id, members[i].name, members[i].membershipType, members[i].feesPaid, members[i].attendance);
+    }
+    pressAnyKey(); //This function is added to pause the program execution and wait for the user to press any key.
+}
