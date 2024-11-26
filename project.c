@@ -243,3 +243,22 @@ void assignMembersToTrainers(){
     }
     pressAnyKey();
 }
+void attendanceTracking(){
+    int id,found=0;
+    printf("Enter ID for attendance to be marked");
+    scanf("%d",&id);
+    for(int i =0;i<memberCount;i++){
+        if(members[i].id == id){
+            found = 1;
+            members[i].attendance++; //increment the attendance in members structure if id is found
+            printf("Attendance marked for member %d.\n", id);
+            saveMembersToFile(); //save the updated changes to the file
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("Member not found\n");
+    }
+    pressAnyKey();
+}
