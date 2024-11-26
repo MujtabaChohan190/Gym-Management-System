@@ -207,3 +207,39 @@ void searchMember(){
     }
     pressAnyKey();
 }
+void assignMembersToTrainers(){
+    if(trainerCount==0){
+        printf("No trainers available- Add trainer first");
+        return;
+    }
+
+    int memberId, trainerId, Memberfound = 0, Trainerfound = 0;
+
+    printf("Enter Member ID: ");
+    scanf("%d", &memberId);
+
+    printf("Enter Trainer ID: ");
+    scanf("%d", &trainerId);
+
+    for (int i = 0; i < memberCount; i++) { //checks and found the desired member id
+        if (members[i].id == memberId) {
+            Memberfound = 1;
+            break;
+        }
+    }
+
+    for (int i = 0; i < trainerCount; i++) {
+        if (trainers[i].id == trainerId) {
+            Trainerfound = 1;
+            break;
+        }
+    }
+
+        if (Memberfound && Trainerfound) {
+        trainers[trainerId - 1].assignedMembers[trainers[trainerId - 1].assignedCount++] = memberId; //The member's id is added to the trainer's assignedMembers array
+        printf("Member %d assigned to Trainer %d.\n", memberId, trainerId);
+    } else {
+        printf("Invalid Member ID or Trainer ID.\n");
+    }
+    pressAnyKey();
+}
