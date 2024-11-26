@@ -189,3 +189,21 @@ void deleteMember() {
     }
     pressAnyKey(); //pause the program and wait for user to press any key to continue
 }
+void searchMember(){
+    int id, found = 0;
+    printf("Enter Member ID to delete: ");
+    scanf("%d", &id);
+
+    for (int i = 0; i < memberCount; i++) {
+        if (members[i].id == id) {
+            found = 1;
+            printf("ID: %d,name: %s,Membership type: %s, Fees Paid: %d, Attendance: %d\n",members[i].id,members[i].name,
+            members[i].membershipType,members[i].feesPaid,members[i].attendance); //display searched member information
+            break;
+        } 
+    }
+    if (!found){
+        printf("Member Not Found\n");
+    }
+    pressAnyKey();
+}
