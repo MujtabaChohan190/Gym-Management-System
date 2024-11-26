@@ -262,3 +262,29 @@ void attendanceTracking(){
     }
     pressAnyKey();
 }
+void upgradeDowngradeMembership(){
+    int id, found = 0;
+    char NewMembType[20];
+
+    printf("Enter Member ID to upgrade/downgrade membership: ");
+    scanf("%d", &id);
+    getchar(); //for newline character
+
+    for (int i = 0; i < memberCount; i++) {
+        if (members[i].id == id) {
+            found = 1;
+            printf("Enter new Membership Type (Monthly/Yearly): ");
+            fgets(NewMembType, sizeof(NewMembType), stdin); //Inputs the New Membership Type into the variable NewMembType
+            NewMembType[strcspn(NewMembType, "\n")] = '\0'; // Remove newline
+            strcpy(members[i].membershipType, NewMembType); //copies the the newmembership type into the founded member's membershipType in members structure
+            printf("Membership updated for member with ID: %d\n", id);
+            saveMembersToFile();
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("Member not found.\n");
+    }
+    pressAnyKey();
+}
