@@ -165,4 +165,27 @@ void updateMember() {
     }
     pressAnyKey();
 }
+void deleteMember() {
+    int id, found = 0;
+    printf("Enter Member ID to delete: ");
+    scanf("%d", &id);
+    getchar();  
 
+    for (int i = 0; i < memberCount; i++) {
+        if (members[i].id == id) {
+            found = 1;
+            for (int j = i; j < memberCount - 1; j++) {
+                members[j] = members[j + 1]; // Update the members index when a member is deleted
+            }
+            memberCount--; //reduces a member since a member is deleted
+            saveMembersToFile(); //save the updated list of members to the file
+            printf("Member deleted successfully!\n");
+            break; //Exit the loop
+        }
+    }
+
+    if (!found) {
+        printf("Member not found.\n");
+    }
+    pressAnyKey(); //pause the program and wait for user to press any key to continue
+}
