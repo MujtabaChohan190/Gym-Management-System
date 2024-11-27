@@ -55,7 +55,11 @@ int main() {
     mainMenu();
     return 0;
 }
-
+void pressAnyKey() {
+    printf("Press any key to continue...\n");
+    getchar(); // Wait for a key press
+    getchar(); // Consume newline character if needed
+}
 //Writing function to load members from file to process things
 void loadMembersFromFile() {
     FILE *file = fopen(FILE_NAME, "r");
@@ -287,4 +291,25 @@ void upgradeDowngradeMembership(){
         printf("Member not found.\n");
     }
     pressAnyKey();
+}
+void loginSystem() {
+    char username[20];
+    char password[20];
+    const char correct_username[] = "admin";
+    const char correct_password[] = "password";
+
+    printf("====== GYM MANAGEMENT LOGIN ======\n");
+    printf("Enter username: ");
+    scanf("%s", username); 
+    printf("Enter password: ");
+    scanf("%s", password); 
+
+    if (strcmp(username, correct_username) == 0 && strcmp(password, correct_password) == 0) {
+        printf("Login successful!\n");
+    } else {
+        printf("Invalid username or password. Exiting program...\n");
+        exit(1); 
+    }
+
+    pressAnyKey(); 
 }
