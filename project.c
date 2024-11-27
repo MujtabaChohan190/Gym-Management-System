@@ -313,3 +313,45 @@ void loginSystem() {
 
     pressAnyKey(); 
 }
+void mainMenu(){
+int choice;
+do{
+printf("===GYM MANAGEMENT MENU===");
+printf("1. Add member\n");
+printf("2. view members\n");
+printf("3. update member\n");
+printf("4. delete member\n");
+printf("5. search member\n");
+printf("6. assign member to trainers\n");
+printf("7. Attendance Tracking\n");
+printf("8. Upgrade/Downgrade Membership\n");
+printf("9. Automatic Fee Calculation\n");
+printf("10. Member Feedback\n");
+printf("11. Generate Reports\n");
+printf("12. Exit\n");
+printf("enter your choice: ");
+scanf("%d",&choice);
+getchar();
+
+switch (choice) {
+            case 1: addMember(); break;
+            case 2: viewMembers(); break;
+            case 3: updateMember(); break;
+            case 4: deleteMember(); break;
+            case 5: searchMember(); break;
+            case 6: assignMembersToTrainers(); break;
+            case 7: attendanceTracking(); break;
+            case 8: upgradeDowngradeMembership(); break;
+            case 9: automaticFeeCalculation(); break;
+            case 10: memberFeedback(); break;
+            case 11: generateReports(); break;
+            case 12: 
+                    saveMembersToFile();
+                    printf("Exiting program...\n");
+                    exit(0);
+                    break;
+            default: printf("Invalid choice. Try again.\n");
+        }
+    } while (choice != 12);
+}
+
