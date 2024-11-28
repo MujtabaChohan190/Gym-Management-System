@@ -362,6 +362,49 @@ int findMemberIndex(int id){
     }
     return -1; //member not found
 }
+
+void automaticFeeCalculation(){
+  int memberId,fee;
+  printf("======AUTOMATIC FEE CALCULATION======");
+  printf("enter member id: ");
+  scanf("%d",&memberId);
+  getchar();
+  int memberIndex=findMemberIndex(memberId);
+  if(memberIndex==-1){
+        printf("member not found.\n");
+      }
+  else{
+      if (strcmp(members[memberIndex].membershipType, "Yearly") == 0) {
+            fee = 1200;
+      } else {
+            fee = 100;
+      }
+      printf("fee for %s membership is:  $%d\n",members[memberIndex].membershipType,fee);
+      printf("enter the amount paid: ");
+      scanf("%d",&members[memberIndex].feesPaid);
+      if(members[memberIndex].feesPaid>=fee){
+         members[memberIndex].paymentStatus=1; //paid
+      }   
+      else{
+         members[memberIndex].paymentStatus=0; //unpaid
+      }
+      if(members[memberIndex].paymentStatus==1){
+         printf("payment status:  paid\n");
+      }else{
+         printf("payment status: unpaid\n");
+      }
+       saveMembersToFile();
+    }
+    pressAnyKey();
+}
+
+
+
+
+
+
+
+         
             
          
         
