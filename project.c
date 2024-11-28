@@ -417,7 +417,17 @@ void automaticFeeCalculation(){
      }
      pressAnyKey();
 }
-  
+
+void generateReports() {
+    printf("==== MEMBER REPORT ====");
+    for (int i = 0; i < memberCount; i++) {
+        printf("ID: %d, Name: %s, Membership Type: %s, Fees Paid: %d, Attendance: %d, Feedback: %s\n",
+               members[i].id, members[i].name, members[i].membershipType,
+               members[i].feesPaid, members[i].attendance, members[i].feedback);
+    }
+    pressAnyKey();
+}
+
 
 
 
