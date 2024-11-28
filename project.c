@@ -398,6 +398,28 @@ void automaticFeeCalculation(){
     pressAnyKey();
 }
 
+  void memberFeedback(){
+  int memberId,fee;
+  printf("======MEMBER FEEDBACK======");
+  printf("enter member id: ");
+  scanf("%d",&memberId);
+  getchar();
+  int memberIndex=findMemberIndex(memberId);
+  if(memberIndex==-1){
+        printf("member not found.\n");
+      }else{
+        printf("enter feedback for %s member: ",members[memberIndex].name);
+        fgets(members[memberIndex].feedback,200,stdin);
+        members[memberIndex].feedback[strcspn(members[memberIndex].feedback,"\n")]=0;
+
+        printf("feedback recorded successfully!\n");
+        saveMembersToFile();
+     }
+     pressAnyKey();
+}
+  
+
+
 
 
 
