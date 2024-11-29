@@ -56,9 +56,8 @@ int main() {
     return 0;
 }
 void pressAnyKey() {
-    printf("Press any key to continue...\n");
+    printf("Press any key to continue\n");
     getchar(); // Wait for a key press
-    getchar(); // Consume newline character if needed
 }
 //Writing function to load members from file to process things
 void loadMembersFromFile() {
