@@ -12,7 +12,8 @@ typedef struct {
     int feesPaid;           
     int attendance;          
     char feedback[200];      
-    bool paymentStatus;      
+    bool paymentStatus;
+    int trainerId;
 } Member;
 
 // Structure for trainers
@@ -80,10 +81,10 @@ void loadMembersFromFile() {
 
     memberCount = 0;
     Member member;
-    while (fscanf(file, "%d,%49[^,],%19[^,],%d,%d,%d,%199[^\n]\n",
+    while (fscanf(file, "%d,%49[^,],%19[^,],%d,%d,%d,%d,%199[^\n]\n",
                   &member.id, member.name, member.membershipType,
                   &member.feesPaid, &member.attendance,
-                  &member.paymentStatus, member.feedback) != EOF) {
+                  &member.paymentStatus, member.trainerId, member.feedback) != EOF) {
         members[memberCount++] = member;
     } //fscanf reads data from file in a loop until it reaches EOF
     fclose(file);
@@ -98,7 +99,7 @@ void saveMembersToFile() {
     }
 
     for (int i = 0; i < memberCount; i++) {
-        fprintf(file, "%d,%s,%s,%d,%d,%d,%s\n", members[i].id, members[i].name, members[i].membershipType, members[i].feesPaid, members[i].attendance, members[i].paymentStatus, members[i].feedback);
+        fprintf(file, "%d,%s,%s,%d,%d,%d,%d,%s\n", members[i].id, members[i].name, members[i].membershipType, members[i].feesPaid, members[i].attendance, members[i].paymentStatus, members[i].trainerId, members[i].feedback);
     }   //fprintf used to write formatted output to the file 
     fclose(file);
 }
@@ -138,7 +139,7 @@ void addMember() {
 void viewMembers() {
     printf("\n========== MEMBERS LIST ==========\n");
     for (int i = 0; i < memberCount; i++) {
-        printf("ID: %d, Name: %s, Membership Type: %s, Fees Paid: %d, Attendance: %d\n", members[i].id, members[i].name, members[i].membershipType, members[i].feesPaid, members[i].attendance);
+        printf("ID: %d, Name: %s, Membership Type: %s, Fees Paid: %d, Trainer ID: %d, Attendance: %d\n", members[i].id, members[i].name, members[i].membershipType, members[i].feesPaid, members[i].trainerId, members[i].attendance);
     }
     pressAnyKey(); //This function is added to pause the program execution and wait for the user to press any key.
 }
@@ -474,9 +475,9 @@ void memberFeedback(){
 void generateReports() {
     printf("\n==== MEMBER REPORT ====\n");
     for (int i = 0; i < memberCount; i++) {
-        printf("ID: %d, Name: %s, Membership Type: %s, Fees Paid: %d, Attendance: %d, Feedback: %s\n",
+        printf("ID: %d, Name: %s, Membership Type: %s, Fees Paid: %d, Attendance: %d, Trainer ID Assigned: %d, Feedback: %s\n",
                members[i].id, members[i].name, members[i].membershipType,
-               members[i].feesPaid, members[i].attendance, members[i].feedback);
+               members[i].feesPaid, members[i].attendance, members[i].trainerId, members[i].feedback);
     }
     pressAnyKey();
 }
