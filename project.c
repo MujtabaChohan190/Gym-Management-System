@@ -238,12 +238,14 @@ void assignMembersToTrainers(){
         }
     }
 
-        if (Memberfound && Trainerfound) {
-        trainers[trainerId - 1].assignedMembers[trainers[trainerId - 1].assignedCount++] = memberId; //The member's id is added to the trainer's assignedMembers array
-        printf("Member %d assigned to Trainer %d.\n", memberId, trainerId);
-    } else {
-        printf("Invalid Member ID or Trainer ID.\n");
-    }
+    if (Memberfound && Trainerfound) {
+    Trainer *trainer = &trainers[trainerId - 1]; // Get the trainer pointer
+    trainer->assignedMembers[trainer->assignedCount] = memberId; // Assign member ID
+    trainer->assignedCount++; // Increment the assigned count
+    printf("Member %d assigned to Trainer %d.\n", memberId, trainerId);
+} else {
+    printf("Invalid Member ID or Trainer ID.\n");
+}
     pressAnyKey();
 }
 void attendanceTracking(){
