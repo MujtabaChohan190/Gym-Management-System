@@ -59,6 +59,7 @@ void pressAnyKey() {
     printf("Press any key to continue\n");
     getchar(); // Wait for a key press
 }
+
 //Writing function to load members from file to process things
 void loadMembersFromFile() {
     FILE *file = fopen(FILE_NAME, "r");
@@ -127,6 +128,7 @@ void addMember() {
     printf("Member added successfully!\n");
     pressAnyKey(); //This function waits for the user to press any key to continue.
 }
+
 //Writing function to view members
 void viewMembers() {
     printf("\n========== MEMBERS LIST ==========\n");
@@ -135,6 +137,7 @@ void viewMembers() {
     }
     pressAnyKey(); //This function is added to pause the program execution and wait for the user to press any key.
 }
+
 //Writing function to update members detail
 void updateMember() {
     int id, found = 0;
@@ -168,6 +171,8 @@ void updateMember() {
     }
     pressAnyKey();
 }
+
+//This function is written to delete members from the txt file
 void deleteMember() {
     int id, found = 0;
     printf("Enter Member ID to delete: ");
@@ -192,9 +197,11 @@ void deleteMember() {
     }
     pressAnyKey(); //pause the program and wait for user to press any key to continue
 }
+
+//This function is written to search the members in the file 
 void searchMember(){
     int id, found = 0;
-    printf("Enter Member ID to delete: ");
+    printf("Enter Member ID to search: ");
     scanf("%d", &id);
 
     for (int i = 0; i < memberCount; i++) {
@@ -210,6 +217,30 @@ void searchMember(){
     }
     pressAnyKey();
 }
+
+// Writing function to add a new trainer
+void addTrainer() {
+    if (trainerCount >= 10) {
+        printf("Trainer limit reached. Cannot add more trainers. Use the functionality of add trainers to add the trainer in your gym.\n");
+        return;
+    }
+
+    Trainer t; 
+    printf("Enter Trainer ID: ");
+    scanf("%d", &t.id);
+    getchar(); 
+
+    printf("Enter Trainer Name: ");
+    fgets(t.name, sizeof(t.name), stdin);
+    t.name[strcspn(t.name, "\n")] = '\0'; // Remove newline
+
+    t.assignedCount = 0; // Initialize assigned members count
+
+    trainers[trainerCount++] = t;
+    printf("Trainer added successfully!\n");
+}
+
+//Function to assign the members to the trainers
 void assignMembersToTrainers(){
     if(trainerCount==0){
         printf("No trainers available- Add trainer first");
@@ -249,6 +280,7 @@ void assignMembersToTrainers(){
     pressAnyKey();
 }
 
+//This function tracks the attendance of each member
 void attendanceTracking(){
     int id,found=0;
     printf("Enter ID for attendance to be marked");
@@ -268,6 +300,8 @@ void attendanceTracking(){
     }
     pressAnyKey();
 }
+
+//This function is used to upgrade or downgrade members membership
 void upgradeDowngradeMembership(){
     int id, found = 0;
     char NewMembType[20];
@@ -294,6 +328,8 @@ void upgradeDowngradeMembership(){
     }
     pressAnyKey();
 }
+
+//Function to implement the login system
 void loginSystem() {
     char username[20];
     char password[20];
@@ -315,6 +351,8 @@ void loginSystem() {
 
     pressAnyKey(); 
 }
+
+//Function to display main menu on the interface
 void mainMenu(){
 int choice;
 do{
@@ -365,6 +403,8 @@ int findMemberIndex(int id){
     return -1; //member not found
 }
 
+
+//This function is writte to compute the fees of gym members 
 void automaticFeeCalculation(){
   int memberId,fee;
   printf("\n======AUTOMATIC FEE CALCULATION======\n");
@@ -400,7 +440,8 @@ void automaticFeeCalculation(){
     pressAnyKey();
 }
 
-  void memberFeedback(){
+//This function is written to allow members to give their valuable feedback to gym management
+void memberFeedback(){
   int memberId,fee;
   printf("\n======MEMBER FEEDBACK======\n");
   printf("enter member id: ");
@@ -420,6 +461,7 @@ void automaticFeeCalculation(){
      pressAnyKey();
 }
 
+//This function allows gym management to extract report of their database
 void generateReports() {
     printf("\n==== MEMBER REPORT ====\n");
     for (int i = 0; i < memberCount; i++) {
