@@ -40,6 +40,7 @@ void viewMembers();
 void updateMember();
 void deleteMember();
 void searchMember();
+void addTrainer();
 void assignMembersToTrainers();
 void attendanceTracking();
 void upgradeDowngradeMembership();
@@ -55,6 +56,10 @@ int main() {
     mainMenu();
     return 0;
 }
+
+// Function to prompt the user to press any key to continue. 
+// This is used to pause the program execution and wait for the user to acknowledge or continue.
+
 void pressAnyKey() {
     printf("Press any key to continue\n");
     getchar(); // Wait for a key press
@@ -354,26 +359,27 @@ void loginSystem() {
 
 //Function to display main menu on the interface
 void mainMenu(){
-int choice;
-do{
-printf("\n===GYM MANAGEMENT MENU===\n");
-printf("1. Add member\n");
-printf("2. view members\n");
-printf("3. update member\n");
-printf("4. delete member\n");
-printf("5. search member\n");
-printf("6. assign member to trainers\n");
-printf("7. Attendance Tracking\n");
-printf("8. Upgrade/Downgrade Membership\n");
-printf("9. Automatic Fee Calculation\n");
-printf("10. Member Feedback\n");
-printf("11. Generate Reports\n");
-printf("12. Exit\n");
-printf("enter your choice: ");
-scanf("%d",&choice);
-getchar();
+    int choice;
+    do{
+        printf("\n===GYM MANAGEMENT MENU===\n");
+        printf("1. Add member\n");
+        printf("2. View members\n");
+        printf("3. Update member\n");
+        printf("4. Delete member\n");
+        printf("5. Search member\n");
+        printf("6. Assign member to trainers\n");
+        printf("7. Attendance Tracking\n");
+        printf("8. Upgrade/Downgrade Membership\n");
+        printf("9. Automatic Fee Calculation\n");
+        printf("10. Member Feedback\n");
+        printf("11. Generate Reports\n");
+        printf("12. Add Trainer\n"); 
+        printf("13. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        getchar();  // To consume any remaining newline character
 
-switch (choice) {
+        switch (choice) {
             case 1: addMember(); break;
             case 2: viewMembers(); break;
             case 3: updateMember(); break;
@@ -385,15 +391,20 @@ switch (choice) {
             case 9: automaticFeeCalculation(); break;
             case 10: memberFeedback(); break;
             case 11: generateReports(); break;
-            case 12: 
-                    saveMembersToFile();
-                    printf("Exiting program...\n");
-                    exit(0);
-                    break;
-            default: printf("Invalid choice. Try again.\n");
+            case 12: addTrainer(); break;  // Call to addTrainer function
+            case 13: 
+                saveMembersToFile();
+                printf("Exiting program...\n");
+                exit(0);
+                break;
+            default: 
+                printf("Invalid choice. Try again.\n");
         }
-    } while (choice != 12);
+    } while (choice != 13);
 }
+
+// Function to find and return the index of a member in the members array based on the given member ID.
+// Returns the index of the member if found, otherwise returns -1 to indicate that the member was not found.
 int findMemberIndex(int id){
     for(int i=0;i<memberCount;i++){
         if(members[i].id==id){
