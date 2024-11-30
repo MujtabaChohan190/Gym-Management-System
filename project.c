@@ -263,6 +263,7 @@ void assignMembersToTrainers(){
     for (int i = 0; i < memberCount; i++) { //checks and found the desired member id
         if (members[i].id == memberId) {
             Memberfound = 1;
+            members[i].trainerId = trainerId;  // Assign the trainer to the member
             break;
         }
     }
@@ -273,14 +274,11 @@ void assignMembersToTrainers(){
             break;
         }
     }
-
     if (Memberfound && Trainerfound) {
-    Trainer *trainer = &trainers[trainerId - 1]; // Get the trainer pointer
-    trainer->assignedMembers[trainer->assignedCount] = memberId; // Assign member ID
-    trainer->assignedCount++; // Increment the assigned count
-    printf("Member %d assigned to Trainer %d.\n", memberId, trainerId);
+        printf("Member %d assigned to Trainer %d.\n", memberId, trainerId);
+        saveMembersToFile();  // Save changes to file
     } else {
-    printf("Invalid Member ID or Trainer ID.\n");
+        printf("Invalid Member ID or Trainer ID.\n");
     }
     pressAnyKey();
 }
