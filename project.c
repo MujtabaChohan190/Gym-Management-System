@@ -318,7 +318,7 @@ void loginSystem() {
 void mainMenu(){
 int choice;
 do{
-printf("===GYM MANAGEMENT MENU===");
+printf("\n===GYM MANAGEMENT MENU===\n");
 printf("1. Add member\n");
 printf("2. view members\n");
 printf("3. update member\n");
@@ -367,7 +367,7 @@ int findMemberIndex(int id){
 
 void automaticFeeCalculation(){
   int memberId,fee;
-  printf("======AUTOMATIC FEE CALCULATION======");
+  printf("\n======AUTOMATIC FEE CALCULATION======\n");
   printf("enter member id: ");
   scanf("%d",&memberId);
   getchar();
@@ -402,7 +402,7 @@ void automaticFeeCalculation(){
 
   void memberFeedback(){
   int memberId,fee;
-  printf("======MEMBER FEEDBACK======");
+  printf("\n======MEMBER FEEDBACK======\n");
   printf("enter member id: ");
   scanf("%d",&memberId);
   getchar();
@@ -421,7 +421,7 @@ void automaticFeeCalculation(){
 }
 
 void generateReports() {
-    printf("==== MEMBER REPORT ====");
+    printf("\n==== MEMBER REPORT ====\n");
     for (int i = 0; i < memberCount; i++) {
         printf("ID: %d, Name: %s, Membership Type: %s, Fees Paid: %d, Attendance: %d, Feedback: %s\n",
                members[i].id, members[i].name, members[i].membershipType,
