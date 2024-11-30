@@ -243,11 +243,12 @@ void assignMembersToTrainers(){
     trainer->assignedMembers[trainer->assignedCount] = memberId; // Assign member ID
     trainer->assignedCount++; // Increment the assigned count
     printf("Member %d assigned to Trainer %d.\n", memberId, trainerId);
-} else {
+    } else {
     printf("Invalid Member ID or Trainer ID.\n");
-}
+    }
     pressAnyKey();
 }
+
 void attendanceTracking(){
     int id,found=0;
     printf("Enter ID for attendance to be marked");
